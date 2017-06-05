@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!-- 配置Run As Maven build : Goals 参数 : mybatis-generator:generate -Dmybatis.generator.overwrite=true -->
+<!-- 配置 tableName,使用 Run As Maven build 生成 dao model 层 -->
+<generatorConfiguration>
+    <!-- 配置文件路径 
+    <properties url="${generatorConfig.properties}"/>-->
+
+    <!--数据库驱动包路径 -->
+    <classPathEntry location="F:\apache-maven-3.5.0\repository\mysql\mysql-connector-java\5.1.42\mysql-connector-java-5.1.42.jar"/>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!--关闭注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--数据库连接信息 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.50.100:3306/backend" userId="root"
+                        password="root123">
+        </jdbcConnection>
+        
+        <!--  默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer  
+         		  true，把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal  -->  
+  		<javaTypeResolver > 
+     		<property name="forceBigDecimals" value="false" /> 
+  		</javaTypeResolver>
+
+        <!--生成的model 包路径 -->
+        <javaModelGenerator targetPackage="com.cic.its.web.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="ture"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--生成xml mapper文件 路径 -->
+        <sqlMapGenerator targetPackage="com.cic.its.web.xml" targetProject="src/main/java">
+            <property name="enableSubPackages" value="ture"/>
+        </sqlMapGenerator>
+
+        <!-- 生成的Dao接口 的包路径 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.cic.its.web.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="ture"/>
+        </javaClientGenerator>
+
+        <!--对应数据库表名 -->
+        <!-- <table tableName="TB_CONTROLLFAULTINFO" domainObjectName="ControlFaultINFO" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+        		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="TB_BUSFLOWINFO" domainObjectName="BusFlowINFO" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+        		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="TB_LINE" domainObjectName="Line" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+        		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="TB_ROUTEEQUIPINFO" domainObjectName="RouteEquipINFO" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+        		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="TB_ROUTEINFO" domainObjectName="RouteINFO" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+        		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="TB_SYSPARAMCONFIG" domainObjectName="SysParamConfig" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+        		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table> 
+        
+        <table tableName="TB_BUSTRAVELTIME" domainObjectName="BustravelTime" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+        		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="TB_ROUTESTRATEGYINFO" domainObjectName="RouteStrategyINFO" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+        		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="TB_ROUTESYSPARAMCONFIG" domainObjectName="RouteSYSParamConfig" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+        		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        
+        <table tableName="TB_SYSDDL" domainObjectName="SYSDDL" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+        		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="TB_REQUESTINFO" domainObjectName="RequestINFO" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+        		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="TB_INTERSECTION" domainObjectName="InterSection" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+        		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>-->
+		<table tableName="user" domainObjectName="TUSER" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+        		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+    </context>
+</generatorConfiguration>

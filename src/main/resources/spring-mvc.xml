@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans     
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd     
+           http://www.springframework.org/schema/context     
+           http://www.springframework.org/schema/context/spring-context-4.0.xsd    
+           http://www.springframework.org/schema/mvc     
+           http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+           http://www.springframework.org/schema/aop
+        	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<context:component-scan base-package="com.cic.its.web"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	 <aop:aspectj-autoproxy proxy-target-class="true"/>
+	<!-- 完成请求和注解POJO的映射 -->
+	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
+
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"
+		lazy-init="false" />
+	<!-- 上传文件 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="maxUploadSize" value="2000000" />
+	</bean>
+	<!-- 资源访问处理器 -->
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
+	<mvc:resources mapping="/js/**" location="/app/js/" cache-period="31556926" />
+	<mvc:resources mapping="/appjs/**" location="/app/appjs/" cache-period="31556926" />
+	<mvc:resources mapping="/css/**" location="/app/css/" cache-period="31556926" />
+	<mvc:resources mapping="/img/**" location="/app/img/" cache-period="31556926" />
+	<mvc:resources mapping="/font/**" location="/app/font/" cache-period="31556926" />
+	<!-- 解析器 -->
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+    <property name="viewResolvers">
+        <list>
+            <bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>
+            <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                <property name="prefix" value="/app/"/>
+                <property name="suffix" value=".html"/>
+            </bean>
+        </list>
+    </property>
+    <property name="defaultViews">
+        <list>
+            <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+        </list>
+    </property>
+</bean>
+
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/plain;charset=UTF-8</value>
+                			<value>application/json;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+		<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="NumberFormatException">error/number</prop><!-- 表示当抛出NumberFormatException的时候就返回名叫number的视图 -->
+				<prop key="NullPointerException">error/null</prop>
+				<prop key="Exception">error/exception</prop>
+			</props>
+		</property>
+		<property name="defaultErrorView" value="exception"/><!-- 表示当抛出异常但没有在exceptionMappings里面找到对应的异常时 返回名叫exception的视图-->
+		<property name="statusCodes"><!-- 定义在发生异常时视图跟返回码的对应关系 -->
+			<props>
+				<prop key="number">500</prop><!-- 表示在发生NumberFormatException时返回视图number，然后这里定义发生异常时视图number对应的HttpServletResponse的返回码是500 -->
+				<prop key="null">503</prop>
+			</props>
+		</property>
+		<property name="defaultStatusCode" value="404"/><!-- 表示在发生异常时默认的HttpServletResponse的返回码是多少，默认是200 -->
+	</bean>
+
+	<!--  <mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*/**" />
+			<bean class="cn.spark.interceptor.AuthorizedInterceptor">
+				<property name="allowUrls">
+					<list>
+						<value>/login.do</value>
+						<value>/getMsgByWorkCode.do</value>
+						<value>/getMsgByRfidCode.do</value>
+						<value>/updateStatusByWorkCode.do</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+ -->
+</beans>
