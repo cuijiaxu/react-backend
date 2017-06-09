@@ -20,4 +20,9 @@ public class UserService {
 		
 		return usermapper.queryAll(map);
 	}
+	
+	public List<TUSER> getbyname(Map<String, String> map){
+		
+		return usermapper.getbyname(map);
+	}
 }

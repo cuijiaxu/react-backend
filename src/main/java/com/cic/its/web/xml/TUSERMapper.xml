@@ -92,8 +92,14 @@
   </update>
   <!-- 查所有信息 -->
   <select id="queryAll" resultType="com.cic.its.web.model.TUSER" parameterType="map">
-  select * 
-   FROM user t
+  	select * 
+   	FROM user t
      where 1=1
+  </select>
+  <!-- 查所有信息 -->
+  <select id="getbyname" resultType="com.cic.its.web.model.TUSER" parameterType="map">
+  	select * 
+   	FROM user t
+     where 1=1 and t.username = #{username,jdbcType=VARCHAR}
   </select>
 </mapper>

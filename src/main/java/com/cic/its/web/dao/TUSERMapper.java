@@ -19,4 +19,6 @@ public interface TUSERMapper {
     int updateByPrimaryKey(TUSER record);
     
     List<TUSER> queryAll(Map<String, String> map);
+    
+    List<TUSER> getbyname(Map<String, String> map);
 }
