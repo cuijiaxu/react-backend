@@ -84,8 +84,18 @@
         <table tableName="TB_INTERSECTION" domainObjectName="InterSection" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
         		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
         </table>-->
-		<table tableName="user" domainObjectName="TUSER" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+		<table tableName="permission" domainObjectName="PERMISSION" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
         		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
+		<table tableName="role" domainObjectName="ROLE" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+        		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+		<table tableName="rolepermission" domainObjectName="ROLEPERSSION" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+        		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+		<table tableName="userrole" domainObjectName="USERROLE" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" 
+        		enableDeleteByPrimaryKey="true" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+		
     </context>
 </generatorConfiguration>
