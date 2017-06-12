@@ -6,7 +6,7 @@ public class RecentSales {
 	private String name;
 	private int status;
 	private String date;
-	private long price;
+	private double price;
 	public int getId() {
 		return id;
 	}
@@ -31,11 +31,11 @@ public class RecentSales {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public long getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(long price) {
-		this.price = price;
+	public void setPrice(double d) {
+		this.price = d;
 	}
 	
 	

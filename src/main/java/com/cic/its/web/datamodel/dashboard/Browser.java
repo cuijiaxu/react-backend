@@ -3,7 +3,7 @@ package com.cic.its.web.datamodel.dashboard;
 public class Browser {
 
 	private String name;
-	private long percent;
+	private double percent;
 	private int status;
 	public String getName() {
 		return name;
@@ -11,11 +11,11 @@ public class Browser {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public long getPercent() {
+	public double getPercent() {
 		return percent;
 	}
-	public void setPercent(long percent) {
-		this.percent = percent;
+	public void setPercent(double d) {
+		this.percent = d;
 	}
 	public int getStatus() {
 		return status;
